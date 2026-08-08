@@ -1,0 +1,35 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { DATA } from "@/data/resume";
+import { ProjectCard } from "@/components/project-card";
+
+const pageTitle = "Proyek";
+---
+
+<Layout title={pageTitle} description="Daftar proyek yang saya bangun untuk kerja, personal, dan prototipe akademik.">
+  <section class="space-y-8">
+    <div class="space-y-3">
+      <p class="text-sm text-muted-foreground">Kumpulan karya</p>
+      <h1 class="text-3xl font-semibold tracking-tighter sm:text-4xl">Proyek</h1>
+      <p class="max-w-2xl text-muted-foreground">
+        Halaman ini menampung ringkasan proyek utama saya. Setiap kartu bisa dibuka ke halaman detail untuk melihat konteks dan tautan terkait.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 auto-rows-fr">
+      {DATA.projects.map((project) => (
+        <ProjectCard
+          detailHref={`/projects/${project.slug}`}
+          href={project.href}
+          title={project.title}
+          description={project.description}
+          dates={project.dates}
+          tags={project.technologies}
+          image={project.image}
+          video={project.video}
+          links={project.links}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>

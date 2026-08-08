@@ -51,6 +51,20 @@ export default function HackathonsSection() {
                     {hackathon.description}
                   </p>
                 )}
+                {hackathon.certificateImage && (
+                  <a
+                    href={hackathon.certificateImage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 block overflow-hidden rounded-xl border border-border bg-card"
+                  >
+                    <img
+                      src={hackathon.certificateImage}
+                      alt={`${hackathon.title} certificate`}
+                      className="h-auto w-full max-w-full object-cover"
+                    />
+                  </a>
+                )}
                 {hackathon.links && hackathon.links.length > 0 && (
                   <div className="mt-1 flex flex-row flex-wrap items-start gap-2">
                     {hackathon.links.map((link, idx) => (

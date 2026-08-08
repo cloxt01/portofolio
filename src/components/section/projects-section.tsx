@@ -4,6 +4,8 @@ import { DATA } from "@/data/resume";
 
 const BLUR_FADE_DELAY = 0.04;
 
+type Project = (typeof DATA.projects)[number];
+
 export default function ProjectsSection() {
     return (
         <section id="projects">
@@ -30,13 +32,14 @@ export default function ProjectsSection() {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">
-                    {DATA.projects.map((project, id) => (
+                    {DATA.projects.map((project: Project, id: number) => (
                         <BlurFade
                             key={project.title}
                             delay={BLUR_FADE_DELAY * 12 + id * 0.05}
                             className="h-full"
                         >
                             <ProjectCard
+                                detailHref={`/projects/${project.slug}`}
                                 href={project.href}
                                 key={project.title}
                                 title={project.title}

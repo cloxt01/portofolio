@@ -34,7 +34,7 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
           </span>
         </h1>
         <p className="text-sm text-muted-foreground mb-8">
-          My personal reflections about web development, life, and more.
+          Catatan pribadi tentang pengembangan web, infrastruktur, karier, dan hal lain yang saya pelajari.
         </p>
       </BlurFade>
 
@@ -78,7 +78,7 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
             <BlurFade delay={BLUR_FADE_DELAY * 4}>
               <div className="flex gap-3 flex-row items-center justify-between mt-8">
                 <div className="text-sm text-muted-foreground">
-                  Page {pagination.page} of {pagination.totalPages}
+                  Halaman {pagination.page} dari {pagination.totalPages}
                 </div>
                 <div className="flex gap-2 sm:justify-end">
                   {pagination.hasPreviousPage ? (
@@ -86,11 +86,11 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
                       href={`/blog?page=${pagination.page - 1}`}
                       className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      Previous
+                      Sebelumnya
                     </a>
                   ) : (
                     <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Previous
+                      Sebelumnya
                     </span>
                   )}
                   {pagination.hasNextPage ? (
@@ -98,11 +98,11 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
                       href={`/blog?page=${pagination.page + 1}`}
                       className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      Next
+                      Berikutnya
                     </a>
                   ) : (
                     <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Next
+                      Berikutnya
                     </span>
                   )}
                 </div>
@@ -114,7 +114,7 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
           <div className="flex flex-col items-center justify-center py-12 px-4 border border-border rounded-xl">
             <p className="text-muted-foreground text-center">
-              No blog posts yet. Check back soon!
+              Belum ada tulisan blog. Silakan cek lagi nanti.
             </p>
           </div>
         </BlurFade>

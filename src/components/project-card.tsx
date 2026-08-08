@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
-import Markdown from "react-markdown";
 
 function ProjectImage({ src, alt }: { src: string; alt: string }) {
   const [imageError, setImageError] = useState(false);
@@ -26,6 +25,7 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
 interface Props {
   title: string;
   href?: string;
+  detailHref?: string;
   description: string;
   dates: string;
   tags: readonly string[];
@@ -42,6 +42,7 @@ interface Props {
 export function ProjectCard({
   title,
   href,
+  detailHref,
   description,
   dates,
   tags,
@@ -59,9 +60,9 @@ export function ProjectCard({
     >
       <div className="relative shrink-0">
         <a
-          href={href || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={detailHref || href || "#"}
+          target={detailHref ? undefined : "_blank"}
+          rel={detailHref ? undefined : "noopener noreferrer"}
           className="block"
         >
           {video ? (
@@ -108,18 +109,18 @@ export function ProjectCard({
             <time className="text-xs text-muted-foreground">{dates}</time>
           </div>
           <a
-            href={href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={detailHref || href || "#"}
+            target={detailHref ? undefined : "_blank"}
+            rel={detailHref ? undefined : "noopener noreferrer"}
             className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-            aria-label={`Open ${title}`}
+            aria-label={detailHref ? `Buka detail ${title}` : `Open ${title}`}
           >
             <ArrowUpRight className="h-4 w-4" aria-hidden />
           </a>
         </div>
-        <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-          <Markdown>{description}</Markdown>
-        </div>
+        <p className="text-xs flex-1 max-w-full text-pretty font-sans leading-relaxed text-muted-foreground">
+          {description}
+        </p>
         {tags && tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-auto">
             {tags.map((tag) => (

@@ -3,9 +3,9 @@ export const CONFIG = {
   // Site Settings
   // ---------------------------------------------------------------------------
   site: {
-    url: "https://alexmercer.dev",
-    locale: "en_US",
-    twitterHandle: "@alexmercer_dev",
+    url: "http://localhost:4321",
+    locale: "id_ID",
+    twitterHandle: "@cloxt01",
   },
 
   // ---------------------------------------------------------------------------
@@ -23,7 +23,7 @@ export const CONFIG = {
   typography: {
     // Base font size as a percentage. 100 = browser default (16px).
     // 110 = 10% larger or 90 = 10% smaller, across all text, headings, and links simultaneously.
-    baseFontSize: 115,
+    baseFontSize: 110,
   },
 
   // ---------------------------------------------------------------------------

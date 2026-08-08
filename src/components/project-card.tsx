@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 import { useState } from "react";
 
 function ProjectImage({ src, alt }: { src: string; alt: string }) {
@@ -37,6 +37,7 @@ interface Props {
     href: string;
   }[];
   className?: string;
+  star?: boolean;
 }
 
 export function ProjectCard({
@@ -50,14 +51,27 @@ export function ProjectCard({
   video,
   links,
   className,
+  star,
 }: Props) {
   return (
     <div
       className={cn(
-        "flex flex-col h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
+        "relative flex flex-col h-full border-2 rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
+        star
+          ? "border-amber-400 shadow-[0_0_0_1px_rgba(251,191,36,0.4)]"
+          : "border-border",
         className
       )}
     >
+      {star && (
+        <span
+          className="absolute top-2 left-2 z-20 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 shadow ring-2 ring-background pointer-events-none"
+          aria-label="Unggulan"
+          title="Unggulan"
+        >
+          <Star className="h-2.5 w-2.5 fill-black text-black" aria-hidden />
+        </span>
+      )}
       <div className="relative shrink-0">
         <a
           href={detailHref || href || "#"}
@@ -105,7 +119,15 @@ export function ProjectCard({
       <div className="p-6 flex flex-col gap-3 flex-1">
         <div className="flex items-start justify-between gap-2">
           <div className="flex flex-col gap-1">
-            <h3 className="font-semibold">{title}</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="font-semibold">{title}</h3>
+              {star && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-400/15 px-2 py-0.5 text-[10px] font-semibold text-amber-500">
+                  <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" aria-hidden />
+                  Unggulan
+                </span>
+              )}
+            </div>
             <time className="text-xs text-muted-foreground">{dates}</time>
           </div>
           <a

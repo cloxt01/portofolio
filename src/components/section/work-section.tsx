@@ -75,12 +75,38 @@ export default function WorkSection() {
               </div>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground">
-            {work.description}
+          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground grid gap-3">
+            {Array.isArray(work.description) ? (
+              <div className="grid gap-1.5">
+                <span className="font-medium text-foreground">
+                  Tanggung Jawab
+                </span>
+                <ul className="grid gap-1 list-disc pl-4 marker:text-muted-foreground">
+                  {work.description.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <p>{work.description}</p>
+            )}
+            {"achievements" in work &&
+              work.achievements &&
+              work.achievements.length > 0 && (
+                <div className="grid gap-1.5">
+                  <span className="font-medium text-foreground">
+                    Key Achievements
+                  </span>
+                  <ul className="grid gap-1 list-disc pl-4 marker:text-muted-foreground">
+                    {work.achievements.map((achievement, i) => (
+                      <li key={i}>{achievement}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
           </AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>
   );
 }
-

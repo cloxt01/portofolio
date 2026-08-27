@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { DATA } from "@/data/resume";
+import { getData, useLang } from "@/lib/lang";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +30,8 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 }
 
 export default function WorkSection() {
+  const [lang] = useLang();
+  const DATA = getData(lang);
   return (
     <Accordion
       type="single"

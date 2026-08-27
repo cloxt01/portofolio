@@ -1,7 +1,9 @@
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
-import { DATA } from "@/data/resume";
+import { getData, useLang } from "@/lib/lang";
 
 export default function ContactSection() {
+  const [lang] = useLang();
+  const DATA = getData(lang);
   const contactLinks = Object.entries(DATA.contact.social).filter(([, social]) => social.navbar);
 
   return (

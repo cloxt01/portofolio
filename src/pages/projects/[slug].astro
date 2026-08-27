@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import { DATA } from "@/data/resume";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import AnsRadiusCaseStudy from "@/components/case-study/AnsRadiusCaseStudy";
 
 export async function getStaticPaths() {
   return DATA.projects.map((project) => ({
@@ -73,20 +74,26 @@ const media = project.video || project.image;
 
     <div class="grid gap-8 lg:grid-cols-[1.4fr_0.8fr]">
       <article class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Ringkasan</h2>
-        <p class="text-muted-foreground leading-relaxed">
-          Halaman ini dibuat agar proyek tidak berhenti sebagai kartu di homepage. Ke depan, saya bisa menaruh studi kasus, screenshot, alur kerja, atau dokumentasi teknis yang lebih panjang di sini.
-        </p>
-        <div class="grid gap-3 sm:grid-cols-2">
-          <div class="rounded-xl border border-border p-4">
-            <p class="text-xs text-muted-foreground mb-2">Status</p>
-            <p class="font-medium">{project.active ? "Aktif" : "Selesai"}</p>
-          </div>
-          <div class="rounded-xl border border-border p-4">
-            <p class="text-xs text-muted-foreground mb-2">Waktu</p>
-            <p class="font-medium">{project.dates}</p>
-          </div>
-        </div>
+        {project.slug === "ans-radius" ? (
+          <AnsRadiusCaseStudy client:only="react" />
+        ) : (
+          <>
+            <h2 class="text-xl font-semibold tracking-tight">Ringkasan</h2>
+            <p class="text-muted-foreground leading-relaxed">
+              {project.description}
+            </p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div class="rounded-xl border border-border p-4">
+                <p class="text-xs text-muted-foreground mb-2">Status</p>
+                <p class="font-medium">{project.active ? "Aktif" : "Selesai"}</p>
+              </div>
+              <div class="rounded-xl border border-border p-4">
+                <p class="text-xs text-muted-foreground mb-2">Waktu</p>
+                <p class="font-medium">{project.dates}</p>
+              </div>
+            </div>
+          </>
+        )}
       </article>
 
       <aside class="space-y-6 rounded-xl border border-border p-5">
@@ -113,7 +120,6 @@ const media = project.video || project.image;
                   class="inline-flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-2 text-sm hover:bg-accent/50 transition-colors"
                 >
                   <span class="inline-flex items-center gap-2">
-                    {link.icon}
                     {link.type}
                   </span>
                   <ArrowUpRight className="size-4 text-muted-foreground" />

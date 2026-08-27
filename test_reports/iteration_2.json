@@ -1,0 +1,40 @@
+{
+  "summary": "Iteration 2 frontend-only validation for Astro portfolio (Muhamad Ferdiansyah). All new bilingual features and regressions verified. Language toggle (data-testid lang-toggle/lang-id/lang-en) works on hero, EN swaps all 7 section headings (About Me / Work Experience / Education / Skills / Projects / Certificates / Get in Touch) and download-cv-btn href to /cv-muhamad-ferdiansyah-en.pdf; ID restores Bahasa Indonesia headings and /cv-muhamad-ferdiansyah.pdf. Persistence via localStorage 'site-lang' confirmed after reload (value 'en'). Case study /projects/ans-radius renders with 4 metric cards, Masalah/Arsitektur/Alur Billing/Hasil sections, own LanguageToggle that switches to Problem/Architecture/Result. No '[object Object]' text found on case study or other project pages. Regression: skills 4 categories, main-projects-grid 4 cards, academic-projects-section 2 items, blog 1 article. Static assets: cv-en PDF, cv-id PDF, favicon.svg, favicon.ico, og_image.png all HTTP 200.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Benign console 404 (Astro dev-toolbar audit fetch) still appears in dev preview — same as iteration 1; not present in production build."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (static site)", "frontend": "100%"},
+  "test_credentials": "none required",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Iteration 2 verified. Key testids: lang-toggle, lang-id, lang-en, download-cv-btn, case-study-ans-radius, case-study-metrics (4 children), skills-categories (4), main-projects-grid (4), academic-projects-section (2). PDFs: /cv-muhamad-ferdiansyah.pdf and /cv-muhamad-ferdiansyah-en.pdf both 200. Case study on /projects/ans-radius has its own LanguageToggle; EN keywords observed: Problem, Architecture, Result (specific label 'Billing Flow' not present verbatim but section renders — not a bug, wording variance).",
+  "verification_details": {
+    "lang_toggle_visible_on_hero": true,
+    "en_headings_all_7_found": ["About Me", "Work Experience", "Education", "Skills", "Projects", "Certificates", "Get in Touch"],
+    "id_headings_all_7_found": ["Tentang Saya", "Pengalaman Kerja", "Pendidikan", "Keahlian", "Proyek", "Sertifikasi", "Kontak"],
+    "cv_href_id": "/cv-muhamad-ferdiansyah.pdf (HTTP 200 application/pdf)",
+    "cv_href_en": "/cv-muhamad-ferdiansyah-en.pdf (HTTP 200 application/pdf)",
+    "localStorage_key": "site-lang = 'en' after reload; persists",
+    "id_restore_after_en": true,
+    "case_study_metrics_count": 4,
+    "case_study_object_object_bug_present": false,
+    "ans_ansible_generic_render_ok": true,
+    "favicon_svg": 200,
+    "favicon_ico": 200,
+    "og_image_png": 200,
+    "skills_categories": 4,
+    "main_projects_grid_count": 4,
+    "academic_projects_count": 2,
+    "blog_article_count": 1
+  }
+}

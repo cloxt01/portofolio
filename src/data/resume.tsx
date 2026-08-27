@@ -37,6 +37,7 @@ export const DATA = {
       enabled: true,
       label: "Proyek",
       heading: "Proyek yang saya bangun",
+      academicHeading: "Proyek Akademik",
       text:
         "Proyek infrastruktur dan otomasi yang saya bangun dan operasikan di lingkungan production, diurutkan berdasarkan relevansi.",
     },

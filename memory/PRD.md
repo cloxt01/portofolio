@@ -18,6 +18,15 @@ Rombak paket screening (portofolio + CV + GitHub) agar lolos screening 30 detik 
 - CV digenerate `scripts/generate_cv.py` (reportlab) → `public/cv-muhamad-ferdiansyah.pdf` (1 halaman, ATS-friendly, Bahasa Indonesia)
 
 ## Yang Sudah Diimplementasikan (Jun 2026)
+### Iterasi 2 — Fitur Lanjutan
+- Toggle bahasa ID/EN satu klik (hook `src/lib/lang.tsx`, localStorage 'site-lang', sinkron antar island via custom event); data EN di `src/data/resume.en.tsx` (derived dari DATA)
+- Tombol Download CV mengikuti bahasa: ID → /cv-muhamad-ferdiansyah.pdf, EN → /cv-muhamad-ferdiansyah-en.pdf (keduanya digenerate `scripts/generate_cv.py`)
+- Studi kasus lengkap bilingual di /projects/ans-radius (`src/components/case-study/AnsRadiusCaseStudy.tsx`): 4 kartu metrik, masalah, arsitektur + topologi, alur billing→jaringan, screenshot, hasil terukur
+- OG image (1200x630, branding terminal Infrastructure Engineer) + favicon.svg/.ico baru via `scripts/generate_og.py`
+- Fix bug: '[object Object]' pada link sidebar halaman detail proyek
+- Testing: iteration_2.json — 100% pass
+
+### Iterasi 1 — Perombakan Screening
 - Headline & summary: "Infrastructure Engineer — ISP Network Operations, Linux, & Automation"
 - Work: ANS Radius satu title + 5 bullet berbasis angka (accordion terbuka default); DPRD dilabel "IT Support — PKL / Internship"; entri "Self-Learning" dihapus
 - Education: UPI rentang riil Aug 2025 – Des 2025

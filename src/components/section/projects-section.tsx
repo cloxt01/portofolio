@@ -1,12 +1,15 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
-import { DATA } from "@/data/resume";
+import { DATA as DATA_ID } from "@/data/resume";
+import { getData, useLang } from "@/lib/lang";
 
 const BLUR_FADE_DELAY = 0.04;
 
-type Project = (typeof DATA.projects)[number];
+type Project = (typeof DATA_ID.projects)[number];
 
 export default function ProjectsSection() {
+    const [lang] = useLang();
+    const DATA = getData(lang);
     const mainProjects = DATA.projects.filter((p: Project) => !p.academic);
     const academicProjects = DATA.projects.filter((p: Project) => p.academic);
 
@@ -59,7 +62,7 @@ export default function ProjectsSection() {
                 {academicProjects.length > 0 && (
                     <div className="max-w-[800px] mx-auto w-full flex flex-col gap-y-3" data-testid="academic-projects-section">
                         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                            Proyek Akademik
+                            {DATA.sections.projects.academicHeading}
                         </h3>
                         <div className="flex flex-col gap-2">
                             {academicProjects.map((project: Project) => (

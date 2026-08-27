@@ -24,7 +24,7 @@ export const DATA = {
   summary:
     "Infrastructure Engineer yang mengelola infrastruktur ISP untuk 2.000+ pelanggan aktif: MikroTik RouterOS, Linux server di atas Proxmox VE, FreeRADIUS, serta monitoring Prometheus + Grafana. Saya membangun sistem RADIUS + billing internal yang menggantikan lisensi vendor (hemat ±Rp12 juta/tahun) dan mengotomasi pekerjaan operasional berulang dengan Ansible. Fokus saya: keandalan layanan, otomasi, dan operasional jaringan yang terdokumentasi.",
   cvUrl: "/cv-muhamad-ferdiansyah.pdf",
-  linkedinUrl: "https://www.linkedin.com/in/muhamad-ferdiansyah", // TODO: ganti dengan URL LinkedIn asli
+  // linkedinUrl: "https://www.linkedin.com/in/muhamad-ferdiansyah", // TODO: ganti dengan URL LinkedIn asli
   // avatarUrl: "/picofme.png",
   ogImage: "/og_image.png",
   sections: {

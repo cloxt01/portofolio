@@ -111,12 +111,6 @@ export const DATA = {
     email: "ferdi.cloxt00@gmail.com",
     tel: "6285863409811",
     social: {
-      LinkedIn: {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/muhamad-ferdiansyah", // TODO: ganti dengan URL LinkedIn asli
-        icon: Icons.linkedin,
-        navbar: true,
-      },
       GitHub: {
         name: "GitHub",
         url: "https://github.com/cloxt01",

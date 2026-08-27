@@ -1,0 +1,128 @@
+---
+export const prerender = true;
+import Layout from "@/layouts/Layout.astro";
+import { DATA } from "@/data/resume";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+
+export async function getStaticPaths() {
+  return DATA.projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const liveLinks = project.links ?? [];
+const media = project.video || project.image;
+---
+
+<Layout
+  title={project.title}
+  description={project.description}
+  canonicalURL={`${DATA.url}/projects/${project.slug}`}
+>
+  <section class="space-y-8">
+    <a
+      href="/projects"
+      class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+    >
+      <ArrowLeft className="size-4" />
+      Kembali ke Proyek
+    </a>
+
+    <header class="space-y-4">
+      <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+        <span>{project.dates}</span>
+        {project.href && (
+          <span class="inline-flex items-center gap-1 rounded-full border border-border px-2 py-1">
+            Link utama tersedia
+          </span>
+        )}
+      </div>
+      <h1 class="text-3xl font-semibold tracking-tighter sm:text-5xl">{project.title}</h1>
+      <p class="max-w-3xl text-muted-foreground text-balance leading-relaxed">
+        {project.description}
+      </p>
+    </header>
+
+    {media ? (
+      <div class="overflow-hidden rounded-2xl border border-border bg-card">
+        {project.video ? (
+          <video
+            src={project.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            class="h-[260px] w-full object-cover sm:h-[360px]"
+          />
+        ) : (
+          <img
+            src={project.image}
+            alt={`${project.title} thumbnail`}
+            class="h-[260px] w-full object-cover sm:h-[360px]"
+          />
+        )}
+      </div>
+    ) : (
+      <div class="flex h-[260px] items-center justify-center rounded-2xl border border-border bg-muted sm:h-[360px]">
+        <p class="text-sm text-muted-foreground">Belum ada thumbnail untuk proyek ini.</p>
+      </div>
+    )}
+
+    <div class="grid gap-8 lg:grid-cols-[1.4fr_0.8fr]">
+      <article class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Ringkasan</h2>
+        <p class="text-muted-foreground leading-relaxed">
+          Halaman ini dibuat agar proyek tidak berhenti sebagai kartu di homepage. Ke depan, saya bisa menaruh studi kasus, screenshot, alur kerja, atau dokumentasi teknis yang lebih panjang di sini.
+        </p>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="rounded-xl border border-border p-4">
+            <p class="text-xs text-muted-foreground mb-2">Status</p>
+            <p class="font-medium">{project.active ? "Aktif" : "Selesai"}</p>
+          </div>
+          <div class="rounded-xl border border-border p-4">
+            <p class="text-xs text-muted-foreground mb-2">Waktu</p>
+            <p class="font-medium">{project.dates}</p>
+          </div>
+        </div>
+      </article>
+
+      <aside class="space-y-6 rounded-xl border border-border p-5">
+        <div>
+          <p class="text-xs text-muted-foreground mb-2">Tech Stack</p>
+          <div class="flex flex-wrap gap-2">
+            {project.technologies.map((tag) => (
+              <Badge variant="outline" className="h-6 px-2 text-[11px] font-medium">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        {liveLinks.length > 0 && (
+          <div class="space-y-3">
+            <p class="text-xs text-muted-foreground">Tautan</p>
+            <div class="flex flex-col gap-2">
+              {liveLinks.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-2 text-sm hover:bg-accent/50 transition-colors"
+                >
+                  <span class="inline-flex items-center gap-2">
+                    {link.icon}
+                    {link.type}
+                  </span>
+                  <ArrowUpRight className="size-4 text-muted-foreground" />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+</Layout>

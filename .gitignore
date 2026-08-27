@@ -31,3 +31,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 node_modules/@cloudflare/workerd-linux-arm64/bin/workerd
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials

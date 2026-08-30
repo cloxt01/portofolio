@@ -1,19 +1,19 @@
 ---
-title: "Membangun Infrastruktur Server ISP Lokal Sendiri dari Nol"
+title: "Membangun RADIUS + Billing Internal untuk RTRWNet"
 publishedAt: "2026-06-10"
 updatedAt: "2026-06-10"
 author: "Muhamad Ferdiansyah"
-summary: "Pengalaman dalam membangun infrastruktur ISP Lokal (RTRWNet) yang terstruktur dan mudah dikelola."
+summary: "Pengalaman menggantikan billing vendor berbayar dengan sistem RADIUS + billing internal berbasis FreeRADIUS, Laravel, dan MySQL untuk ISP dengan 2.000+ pelanggan aktif."
 image: "/ansradius-preview.png"
 ---
 
-Berdasarkan pengalaman membangun infrastruktur isp lokal sendiri, saya merasa semua bagian dari infrastruktur mulai dari jaringan, server, layanan itu harus terdokumentasi & terotomatisasi.
+Di banyak ISP kecil dan RTRWNet, billing dan autentikasi pelanggan biasanya bergantung pada aplikasi vendor berbayar. Lisensinya tidak murah untuk skala bisnis lokal, dan fiturnya sering tidak fleksibel mengikuti kebutuhan operasional.
 
 ## Masalah
 
 Kondisi awal yang ingin diselesaikan:
 
-- **Ketergantungan Infrastruktur pada Pihak Ketiga** sebelumnya, infrastruktur bergantung pada Pihak Ketiga seperti Radius, Billing, Data Pelanggan Dan sebagainya.
+- **Biaya lisensi vendor** yang berulang setiap waktu, untuk fitur yang sebagian besar tidak terpakai.
 
 ## Arsitektur
 

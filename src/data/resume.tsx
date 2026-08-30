@@ -359,7 +359,7 @@ export const DATA = {
       image: "https://www.google.com/s2/favicons?domain=upi.edu&sz=128",
       description:
         "Mendapat Top 5 pada kompetisi Product Innovation tingkat departemen melalui ASIK Vol. V 2026.",
-      certificateImage: "/asik-vol-v-2026-certificate.png",
+      certificateImage: "/asik-vol-v-2026-certificate.jpg",
       links: [],
     },
     {

@@ -34,7 +34,7 @@ const EN_PROJECT_OVERRIDES: Record<string, { description: string; dates?: string
 const EN_HACKATHON_DESCRIPTIONS: string[] = [
   "Computer & Network Engineer competency certification focused on troubleshooting, WAN security, and network assessment.",
   "Finalist in the poster presentation category at the PENA 2 2026 National Essay Competition.",
-  "Top 3 in the department-level Product Innovation competition at ASIK Vol. V 2026.",
+  "Top 5 in the department-level Product Innovation competition at ASIK Vol. V 2026.",
   "Received an award at the university-level Product Innovation competition, Agromaritim Fest 2025.",
 ];
 

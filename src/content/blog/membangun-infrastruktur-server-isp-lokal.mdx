@@ -1,0 +1,55 @@
+---
+title: "Membangun Infrastruktur Server ISP Lokal Sendiri dari Nol"
+publishedAt: "2026-06-10"
+updatedAt: "2026-06-10"
+author: "Muhamad Ferdiansyah"
+summary: "Pengalaman dalam membangun infrastruktur ISP Lokal (RTRWNet) yang terstruktur dan mudah dikelola."
+image: "/ansradius-preview.png"
+---
+
+Berdasarkan pengalaman membangun infrastruktur isp lokal sendiri, saya merasa semua bagian dari infrastruktur mulai dari jaringan, server, layanan itu harus terdokumentasi & terotomatisasi.
+
+## Masalah
+
+Kondisi awal yang ingin diselesaikan:
+
+- **Ketergantungan Infrastruktur pada Pihak Ketiga** sebelumnya, infrastruktur bergantung pada Pihak Ketiga seperti Radius, Billing, Data Pelanggan Dan sebagainya.
+
+## Arsitektur
+
+Komponen utamanya sederhana dan semuanya open source:
+
+```
+Pelanggan (PPPoE)
+      │
+MikroTik RouterOS ──► FreeRADIUS (AAA) ──► MySQL
+                              ▲
+                    Aplikasi Billing
+```
+
+- **MikroTik RouterOS** sebagai NAS (Network Access Server). Pelanggan terhubung lewat PPPoE, dan setiap sesi diautentikasi ke RADIUS — bukan ke secret lokal di router.
+- **FreeRADIUS** menangani AAA (Authentication, Authorization, Accounting) dengan backend MySQL (`sql` module). Profil kecepatan dikirim sebagai atribut `Mikrotik-Rate-Limit`, jadi perubahan paket cukup update di database.
+- **Web (PHP Native) + MySQL** sebagai aplikasi billing: manajemen pelanggan, generate tagihan bulanan, pencatatan pembayaran, dan status layanan.
+- **Nginx + Docker** untuk serving dan isolasi aplikasi, berjalan di Linux server di atas Proxmox VE.
+
+## Alur billing → jaringan
+
+Bagian paling penting adalah menghubungkan status tagihan dengan status koneksi secara otomatis:
+
+1. Scheduler generate tagihan setiap awal periode.
+2. Saat jatuh tempo terlewati, sistem mengubah profil pelanggan di tabel `radgroupreply` ke profil isolir yang nantinya akan diarahkan ke web isolir yang sudah di konfigurasi di webproxy pada mikrotik.
+3. Sesi PPPoE aktif diputus melalui Mikrotik API, sehingga pelanggan langsung masuk mode isolir tanpa menunggu re-connect.
+4. Setelah pembayaran tercatat, proses yang sama berjalan terbalik — pelanggan aktif kembali dalam hitungan detik, tanpa disentuh manual.
+
+Dengan pola ini, tidak ada lagi "lupa isolir" atau "lupa buka isolir" — dua sumber komplain paling umum di operasional RTRWNet.
+
+## Pelajaran yang saya ambil
+
+- **Pengelolaan data terpusat.** Dengan menerapkan radius, semua data pelanggan tidak terikat pada router dan tersebar di berbagai tempat melainkan sudah terpusat. Dengan begitu pengelolaan data dapat lebih mudah dikelola dan mengurangi masalah pada data pelanggan. 
+- **Otomasi bertahap.** Saya mulai dari autentikasi saja, lalu billing, lalu isolir otomatis. Sistem production tidak perlu (dan tidak boleh) diganti sekaligus.
+
+## Hasil
+
+- 2.000+ pelanggan aktif terautentikasi lewat FreeRADIUS di production.
+- Biaya lisensi vendor ±Rp12 juta/tahun hilang sepenuhnya.
+- Aktivasi, isolir, dan perubahan paket berjalan otomatis — pekerjaan manual berulang di router praktis hilang.

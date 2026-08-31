@@ -334,6 +334,22 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "Linux Unhatched Certification",
+      dates: "Aug 2026",
+      location: "Cisco Networking Academy",
+      image: "/cisco-networking-academy-logo.jpg",
+      description:[
+        "Linux command-line basics, filesystem navigation, and directory listing.",
+        "Creating, moving, deleting, searching, and extracting file data.",
+        "Writing simple shell automation scripts for repetitive tasks.",
+        "Identifying Linux system storage locations and configuration paths.", 
+        "Inspecting vital network settings and managing system users.", 
+        "Manipulating file permissions and ownership settings."
+      ],
+      certificateImage: "/linux-unhatched-certificate.png",
+      links: [],
+    },
+    {
       title: "Sertifikat Kompetensi Troubleshoot & WAN Security Network Assessment",
       dates: "Mar 2024",
       location: "Cyber K",

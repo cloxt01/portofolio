@@ -338,14 +338,7 @@ export const DATA = {
       dates: "Aug 2026",
       location: "Cisco Networking Academy",
       image: "/cisco-networking-academy-logo.jpg",
-      description:[
-        "Linux command-line basics, filesystem navigation, and directory listing.",
-        "Creating, moving, deleting, searching, and extracting file data.",
-        "Writing simple shell automation scripts for repetitive tasks.",
-        "Identifying Linux system storage locations and configuration paths.", 
-        "Inspecting vital network settings and managing system users.", 
-        "Manipulating file permissions and ownership settings."
-      ],
+      description: "Dasar-dasar perintah baris Linux, navigasi sistem berkas, dan pendaftaran direktori; Membuat, memindahkan, menghapus, mencari, dan mengekstrak data berkas; Menulis skrip otomasi shell sederhana untuk tugas-tugas berulang; Mengidentifikasi lokasi penyimpanan sistem Linux dan jalur konfigurasi; Memeriksa pengaturan jaringan penting dan mengelola pengguna sistem; Serta memanipulasi izin berkas dan pengaturan kepemilikan.",
       certificateImage: "/linux-unhatched-certificate.png",
       links: [],
     },
